@@ -1,0 +1,3740 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Class 9 CBSE · NCERT Study Tracker</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+  transition: .3s;
+}
+
+body.dark {
+  background: #121212;
+  color: #eee;
+}
+
+header {
+  background: #263238;
+  color: white;
+  padding: 25px 15px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+header p {
+  opacity: .85;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 15px;
+  background: #1976d2;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover {
+  opacity: .85;
+}
+
+.secondary {
+  background: #546e7a;
+}
+
+.green {
+  background: #388e3c;
+}
+
+.red {
+  background: #d32f2f;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.08);
+}
+
+body.dark .card {
+  background: #1e1e1e;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+h3 {
+  margin: 15px 0 8px;
+}
+
+select,
+input,
+textarea {
+  width: 100%;
+  padding: 11px;
+  margin: 7px 0 14px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 15px;
+  background: inherit;
+  color: inherit;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 15px;
+}
+
+.stat {
+  background: #eceff1;
+  padding: 18px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+body.dark .stat {
+  background: #292929;
+}
+
+.stat-number {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 8px;
+}
+
+.book-box {
+  border: 2px solid #1976d2;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.book-icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.timer {
+  text-align: center;
+}
+
+#timerDisplay {
+  font-family: monospace;
+  font-size: 55px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+.timer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.chapter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px;
+  border-bottom: 1px solid #ddd;
+}
+
+body.dark .chapter {
+  border-bottom-color: #444;
+}
+
+.chapter input {
+  width: auto;
+  margin: 0;
+}
+
+.chapter-status {
+  margin-left: auto;
+  font-size: 13px;
+  opacity: .7;
+}
+
+.task {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+body.dark .task {
+  border-bottom-color: #444;
+}
+
+.ai-answer {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #eceff1;
+  line-height: 1.6;
+}
+
+body.dark .ai-answer {
+  background: #292929;
+}
+
+.small {
+  font-size: 13px;
+  opacity: .7;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  opacity: .7;
+}
+
+@media(max-width:600px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  header h1 {
+    font-size: 23px;
+  }
+
+  #timerDisplay {
+    font-size: 42px;
+  }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <h1>📚 Class 9 Study Tracker</h1>
+  <p>Class 9 CBSE · NCERT</p>
+</header>
+
+<div class="container">
+
+<!-- NAVIGATION -->
+
+<div class="nav">
+
+  <button onclick="openNCERT()">
+    📖 Open NCERT textbooks
+  </button>
+
+  <button onclick="openChatGPT()">
+    🤖 Open AI Study Helper
+  </button>
+
+  <button class="secondary" onclick="toggleTheme()">
+    🌙 Light / Dark
+  </button>
+
+  <button class="secondary" onclick="toggleLanguage()">
+    🌐 English / हिन्दी
+  </button>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div class="card">
+
+<h2>📊 Dashboard</h2>
+
+<div class="grid">
+
+<div class="stat">
+<div>Today</div>
+<div class="stat-number" id="todayTime">0</div>
+<div>minutes</div>
+</div>
+
+<div class="stat">
+<div>This Week</div>
+<div class="stat-number" id="weekTime">0</div>
+<div>minutes</div>
+</div>
+
+<div class="stat">
+<div>🔥 Streak</div>
+<div class="stat-number" id="streak">0</div>
+<div>days</div>
+</div>
+
+<div class="stat">
+<div>✅ Chapters</div>
+<div class="stat-number" id="doneCount">0</div>
+<div>completed</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- SUBJECT -->
+
+<div class="card">
+
+<h2>📘 Choose Your Study</h2>
+
+<label>Subject</label>
+
+<select id="subject" onchange="updateChapters()">
+
+<option>Mathematics</option>
+<option>Science</option>
+<option>English</option>
+<option>Hindi</option>
+<option>History</option>
+<option>Geography</option>
+<option>Civics</option>
+<option>Economics</option>
+<option>Sanskrit</option>
+<option>Information Technology</option>
+
+</select>
+
+<label>Chapter</label>
+
+<select id="chapter"></select>
+
+</div>
+
+<!-- NCERT BOOK -->
+
+<div class="card">
+
+<h2>📖 NCERT Book</h2>
+
+<div class="book-box">
+
+<div class="book-icon">📚</div>
+
+<h3 id="bookTitle">
+Class 9 NCERT Textbook
+</h3>
+
+<p>
+Use the official NCERT website to open the prescribed textbook.
+</p>
+
+<br>
+
+<button onclick="openNCERT()">
+Open Official NCERT Textbook
+</button>
+
+<p class="small" style="margin-top:15px">
+The tracker does not copy or host NCERT PDFs.
+</p>
+
+</div>
+
+</div>
+
+<!-- AI HELPER -->
+
+<div class="card">
+
+<h2>🤖 AI Study Helper</h2>
+
+<p>
+Ask for help with your selected Class 9 topic.
+</p>
+
+<br>
+
+<label>Your question</label>
+
+<textarea
+id="aiQuestion"
+placeholder="Example: Explain this chapter in simple words..."
+></textarea>
+
+<button onclick="askAI()">
+🤖 Ask AI
+</button>
+
+<div id="aiAnswer" class="ai-answer" style="display:none"></div>
+
+</div>
+
+<!-- TIMER -->
+
+<div class="card timer">
+
+<h2>⏱ Study Timer</h2>
+
+<div id="timerMode">
+Normal Study
+</div>
+
+<div id="timerDisplay">
+00:00:00
+</div>
+
+<div class="timer-buttons">
+
+<button onclick="startTimer()">▶ Start</button>
+
+<button onclick="stopTimer()">⏸ Stop</button>
+
+<button class="secondary" onclick="resetTimer()">↻ Reset</button>
+
+<button class="green" onclick="pomodoro()">
+🍅 Pomodoro 25 min
+</button>
+
+</div>
+
+<p class="small" style="margin-top:15px">
+Pomodoro = 25 minutes study + 5 minutes break
+</p>
+
+</div>
+
+<!-- MANUAL STUDY -->
+
+<div class="card">
+
+<h2>📝 Manual Study Log</h2>
+
+<label>Minutes studied</label>
+
+<input
+type="number"
+id="manualMinutes"
+min="1"
+placeholder="Example: 45"
+
+>
+
+<button onclick="manualLog()">
+Add Study Time
+</button>
+
+</div>
+
+<!-- GOALS -->
+
+<div class="card">
+
+<h2>🎯 Goals</h2>
+
+<label>Daily goal</label>
+
+<input
+type="number"
+id="dailyGoal"
+min="1"
+onchange="saveGoals()"
+
+>
+
+<label>Weekly goal</label>
+
+<input
+type="number"
+id="weeklyGoal"
+min="1"
+onchange="saveGoals()"
+
+>
+
+<p>
+Daily:
+<strong id="dailyProgress">0 min</strong>
+</p>
+
+<br>
+
+<p>
+Weekly:
+<strong id="weeklyProgress">0 min</strong>
+</p>
+
+</div>
+
+<!-- CHAPTER CHECKLIST -->
+
+<div class="card">
+
+<h2>✅ NCERT Chapter Checklist</h2>
+
+<div id="chapters"></div>
+
+</div>
+
+<!-- HOMEWORK -->
+
+<div class="card">
+
+<h2>📅 Homework & Tests</h2>
+
+<label>Subject</label>
+
+<select id="taskSubject">
+
+<option>Mathematics</option>
+<option>Science</option>
+<option>English</option>
+<option>Hindi</option>
+<option>History</option>
+<option>Geography</option>
+<option>Civics</option>
+<option>Economics</option>
+<option>Sanskrit</option>
+<option>Information Technology</option>
+
+</select>
+
+<label>Task</label>
+
+<input
+id="taskText"
+placeholder="Example: Complete Science questions"
+
+>
+
+<label>Date</label>
+
+<input
+type="date"
+id="taskDate"
+
+>
+
+<button onclick="addTask()">
+Add Task
+</button>
+
+<div id="tasks"></div>
+
+</div>
+
+<!-- SHARE -->
+
+<div class="card">
+
+<h2>🔗 Share Study Record</h2>
+
+<p class="small">
+Generate a code and send it to your friend.
+</p>
+
+<br>
+
+<button onclick="generateCode()">
+Generate Share Code
+</button>
+
+<textarea
+id="shareCode"
+readonly
+placeholder="Your code appears here..."
+></textarea>
+
+<button class="secondary" onclick="copyCode()">
+Copy Code
+</button>
+
+<br><br>
+
+<h3>View Friend's Record</h3>
+
+<textarea
+id="friendCode"
+placeholder="Paste friend's code here..."
+></textarea>
+
+<button onclick="viewFriend()">
+View Record
+</button>
+
+<div id="friendResult"></div>
+
+</div>
+
+<!-- DATA -->
+
+<div class="card">
+
+<h2>⚙️ Data</h2>
+
+<p class="small">
+Your study data is saved in this browser.
+No account is required.
+</p>
+
+<br>
+
+<button class="red" onclick="clearData()">
+Clear All Data
+</button>
+
+</div>
+
+</div>
+
+<footer>
+Class 9 CBSE · NCERT Study Tracker
+</footer>
+
+<script>
+
+/* =========================
+   NCERT
+========================= */
+
+function openNCERT() {
+
+  window.open(
+    "https://ncert.nic.in/textbook.php",
+    "_blank"
+  );
+
+}
+
+
+/* =========================
+   CHAPTERS
+========================= */
+
+const chapters = {
+
+Mathematics: [
+"Number Systems",
+"Polynomials",
+"Coordinate Geometry",
+"Linear Equations in Two Variables",
+"Introduction to Euclid's Geometry",
+"Lines and Angles",
+"Triangles",
+"Quadrilaterals",
+"Circles",
+"Heron's Formula",
+"Surface Areas and Volumes",
+"Statistics",
+"Probability"
+],
+
+Science: [
+"Matter in Our Surroundings",
+"Is Matter Around Us Pure?",
+"Atoms and Molecules",
+"Structure of the Atom",
+"The Fundamental Unit of Life",
+"Tissues",
+"Motion",
+"Force and Laws of Motion",
+"Gravitation",
+"Work and Energy",
+"Sound",
+"Improvement in Food Resources"
+],
+
+English: [
+"Beehive / Kaveri — check NCERT",
+"Moments — check NCERT",
+"English chapters — official NCERT list"
+],
+
+Hindi: [
+"Hindi — official NCERT chapter list"
+],
+
+History: [
+"The French Revolution",
+"Socialism in Europe and the Russian Revolution",
+"Nazism and the Rise of Hitler",
+"Forest Society and Colonialism",
+"Pastoralists in the Modern World"
+],
+
+Geography: [
+"India — Size and Location",
+"Physical Features of India",
+"Drainage",
+"Climate",
+"Natural Vegetation and Wildlife",
+"Population"
+],
+
+Civics: [
+"What is Democracy? Why Democracy?",
+"Constitutional Design",
+"Electoral Politics",
+"Working of Institutions",
+"Democratic Rights"
+],
+
+Economics: [
+"The Story of Village Palampur",
+"People as Resource",
+"Poverty as a Challenge",
+"Food Security in India"
+],
+
+Sanskrit: [
+"Sanskrit — official NCERT chapter list"
+],
+
+"Information Technology": [
+"IT — check prescribed textbook"
+]
+
+};
+
+
+/* =========================
+   DATA
+========================= */
+
+let data =
+JSON.parse(
+localStorage.getItem("class9Tracker")
+) || {
+
+logs: [],
+done: {},
+tasks: [],
+dailyGoal: 60,
+weeklyGoal: 420
+
+};
+
+
+function save() {
+
+localStorage.setItem(
+"class9Tracker",
+JSON.stringify(data)
+);
+
+updateDashboard();
+
+}
+
+
+/* =========================
+   SUBJECT
+========================= */
+
+function updateChapters() {
+
+const subject =
+document.getElementById("subject").value;
+
+const select =
+document.getElementById("chapter");
+
+select.innerHTML = "";
+
+chapters[subject].forEach((name,index)=>{
+
+const option =
+document.createElement("option");
+
+option.value = index;
+
+option.textContent = name;
+
+select.appendChild(option);
+
+});
+
+document.getElementById(
+"bookTitle"
+).textContent =
+subject + " — NCERT";
+
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+let seconds = 0;
+
+let interval = null;
+
+
+function displayTimer() {
+
+let h =
+Math.floor(seconds / 3600);
+
+let m =
+Math.floor((seconds % 3600) / 60);
+
+let s =
+seconds % 60;
+
+document.getElementById(
+"timerDisplay"
+).textContent =
+
+String(h).padStart(2,"0") +
+":" +
+String(m).padStart(2,"0") +
+":" +
+String(s).padStart(2,"0");
+
+}
+
+
+function startTimer() {
+
+if(interval) return;
+
+document.getElementById(
+"timerMode"
+).textContent =
+"Normal Study";
+
+interval =
+setInterval(()=>{
+
+seconds++;
+
+displayTimer();
+
+},1000);
+
+}
+
+
+function stopTimer() {
+
+if(!interval) return;
+
+clearInterval(interval);
+
+interval = null;
+
+const minutes =
+Math.floor(seconds / 60);
+
+if(minutes > 0)
+addLog(minutes);
+
+}
+
+
+function resetTimer() {
+
+clearInterval(interval);
+
+interval = null;
+
+seconds = 0;
+
+displayTimer();
+
+}
+
+
+/* =========================
+   POMODORO
+========================= */
+
+function pomodoro() {
+
+resetTimer();
+
+let remaining =
+25 * 60;
+
+document.getElementById(
+"timerMode"
+).textContent =
+"🍅 Pomodoro Study";
+
+document.getElementById(
+"timerDisplay"
+).textContent =
+"25:00";
+
+
+interval =
+setInterval(()=>{
+
+remaining--;
+
+let m =
+Math.floor(remaining / 60);
+
+let s =
+remaining % 60;
+
+document.getElementById(
+"timerDisplay"
+).textContent =
+String(m).padStart(2,"0") +
+":" +
+String(s).padStart(2,"0");
+
+
+if(remaining <= 0) {
+
+clearInterval(interval);
+
+interval = null;
+
+addLog(25);
+
+alert(
+"25 minutes complete! Take a 5 minute break."
+);
+
+startBreak();
+
+}
+
+},1000);
+
+}
+
+
+function startBreak() {
+
+let remaining =
+5 * 60;
+
+document.getElementById(
+"timerMode"
+).textContent =
+"☕ Pomodoro Break";
+
+
+interval =
+setInterval(()=>{
+
+remaining--;
+
+let m =
+Math.floor(remaining / 60);
+
+let s =
+remaining % 60;
+
+document.getElementById(
+"timerDisplay"
+).textContent =
+String(m).padStart(2,"0") +
+":" +
+String(s).padStart(2,"0");
+
+
+if(remaining <= 0) {
+
+clearInterval(interval);
+
+interval = null;
+
+alert(
+"Break finished! Start studying again."
+);
+
+resetTimer();
+
+}
+
+},1000);
+
+}
+
+
+/* =========================
+   STUDY LOG
+========================= */
+
+function addLog(minutes) {
+
+const subject =
+document.getElementById(
+"subject"
+).value;
+
+const chapterIndex =
+document.getElementById(
+"chapter"
+).value;
+
+const chapter =
+chapters[subject][chapterIndex];
+
+
+data.logs.push({
+
+date:
+new Date()
+.toISOString()
+.split("T")[0],
+
+minutes: minutes,
+
+subject: subject,
+
+chapter: chapter
+
+});
+
+save();
+
+}
+
+
+function manualLog() {
+
+const input =
+document.getElementById(
+"manualMinutes"
+);
+
+const minutes =
+Number(input.value);
+
+if(minutes <= 0) {
+
+alert(
+"Enter valid minutes."
+);
+
+return;
+
+}
+
+addLog(minutes);
+
+input.value = "";
+
+alert(
+"Study time saved!"
+);
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function today() {
+
+return new Date()
+.toISOString()
+.split("T")[0];
+
+}
+
+
+function todayMinutes() {
+
+return data.logs
+.filter(x=>x.date === today())
+.reduce(
+(a,b)=>a+b.minutes,
+0
+);
+
+}
+
+
+function weekMinutes() {
+
+const now =
+new Date();
+
+const day =
+now.getDay();
+
+const diff =
+day === 0 ? 6 : day - 1;
+
+const start =
+new Date(now);
+
+start.setDate(
+now.getDate() - diff
+);
+
+const startDate =
+start.toISOString()
+.split("T")[0];
+
+return data.logs
+.filter(x=>x.date >= startDate)
+.reduce(
+(a,b)=>a+b.minutes,
+0
+);
+
+}
+
+
+function streak() {
+
+const dates =
+[
+...new Set(
+data.logs.map(x=>x.date)
+)
+].sort().reverse();
+
+if(!dates.length)
+return 0;
+
+let count = 0;
+
+let current =
+new Date();
+
+for(const d of dates) {
+
+const currentDate =
+current
+.toISOString()
+.split("T")[0];
+
+if(d !== currentDate)
+break;
+
+count++;
+
+current.setDate(
+current.getDate()-1
+);
+
+}
+
+return count;
+
+}
+
+
+function updateDashboard() {
+
+const todayTime =
+todayMinutes();
+
+const weekTime =
+weekMinutes();
+
+document.getElementById(
+"todayTime"
+).textContent =
+todayTime;
+
+document.getElementById(
+"weekTime"
+).textContent =
+weekTime;
+
+document.getElementById(
+"streak"
+).textContent =
+streak();
+
+document.getElementById(
+"doneCount"
+).textContent =
+Object.values(data.done)
+.filter(Boolean).length;
+
+document.getElementById(
+"dailyProgress"
+).textContent =
+todayTime +
+" / " +
+data.dailyGoal +
+" min";
+
+document.getElementById(
+"weeklyProgress"
+).textContent =
+weekTime +
+" / " +
+data.weeklyGoal +
+" min";
+
+}
+
+
+/* =========================
+   GOALS
+========================= */
+
+function saveGoals() {
+
+data.dailyGoal =
+Number(
+document.getElementById(
+"dailyGoal"
+).value
+);
+
+data.weeklyGoal =
+Number(
+document.getElementById(
+"weeklyGoal"
+).value
+);
+
+save();
+
+}
+
+
+/* =========================
+   CHECKLIST
+========================= */
+
+function loadChapters() {
+
+const container =
+document.getElementById(
+"chapters"
+);
+
+container.innerHTML = "";
+
+Object.keys(chapters)
+.forEach(subject=>{
+
+const heading =
+document.createElement("h3");
+
+heading.textContent =
+subject;
+
+container.appendChild(
+heading
+);
+
+chapters[subject]
+.forEach((chapter,index)=>{
+
+const key =
+subject + "_" + index;
+
+const row =
+document.createElement("div");
+
+row.className =
+"chapter";
+
+const checkbox =
+document.createElement("input");
+
+checkbox.type =
+"checkbox";
+
+checkbox.checked =
+data.done[key] || false;
+
+checkbox.onchange = ()=>{
+
+data.done[key] =
+checkbox.checked;
+
+save();
+
+loadChapters();
+
+};
+
+const text =
+document.createElement("span");
+
+text.textContent =
+chapter;
+
+const status =
+document.createElement("span");
+
+status.className =
+"chapter-status";
+
+status.textContent =
+checkbox.checked
+? "Done"
+: "Not done";
+
+row.appendChild(
+checkbox
+);
+
+row.appendChild(
+text
+);
+
+row.appendChild(
+status
+);
+
+container.appendChild(
+row
+);
+
+});
+
+});
+
+}
+
+
+/* =========================
+   HOMEWORK
+========================= */
+
+function addTask() {
+
+const subject =
+document.getElementById(
+"taskSubject"
+).value;
+
+const text =
+document.getElementById(
+"taskText"
+).value;
+
+const date =
+document.getElementById(
+"taskDate"
+).value;
+
+if(!text || !date) {
+
+alert(
+"Enter task and date."
+);
+
+return;
+
+}
+
+data.tasks.push({
+
+id: Date.now(),
+
+subject: subject,
+
+text: text,
+
+date: date,
+
+done: false
+
+});
+
+document.getElementById(
+"taskText"
+).value = "";
+
+save();
+
+loadTasks();
+
+}
+
+
+function loadTasks() {
+
+const container =
+document.getElementById(
+"tasks"
+);
+
+container.innerHTML = "";
+
+data.tasks
+.sort(
+(a,b)=>a.date.localeCompare(b.date)
+)
+.forEach(task=>{
+
+const div =
+document.createElement("div");
+
+div.className =
+"task";
+
+div.innerHTML = `
+
+<strong>
+${task.subject}
+</strong>
+
+<p>
+${task.text}
+</p>
+
+<p class="small">
+📅 ${task.date}
+</p>
+
+<br>
+
+<button
+onclick="toggleTask(${task.id})"
+>
+${task.done ? "↩ Undo" : "✓ Done"}
+</button>
+
+<button
+class="red"
+onclick="deleteTask(${task.id})"
+>
+Delete
+</button>
+
+`;
+
+container.appendChild(div);
+
+});
+
+}
+
+
+function toggleTask(id) {
+
+const task =
+data.tasks.find(
+x=>x.id === id
+);
+
+if(task) {
+
+task.done =
+!task.done;
+
+save();
+
+loadTasks();
+
+}
+
+}
+
+
+function deleteTask(id) {
+
+data.tasks =
+data.tasks.filter(
+x=>x.id !== id
+);
+
+save();
+
+loadTasks();
+
+}
+
+
+/* =========================
+   AI HELPER
+========================= */
+
+function askAI() {
+
+const question =
+document.getElementById(
+"aiQuestion"
+).value.trim();
+
+if(!question) {
+
+alert(
+"Write a question first."
+);
+
+return;
+
+}
+
+const subject =
+document.getElementById(
+"subject"
+).value;
+
+const index =
+document.getElementById(
+"chapter"
+).value;
+
+const chapter =
+chapters[subject][index];
+
+
+const prompt =
+`I am a Class 9 CBSE student studying NCERT.
+
+Subject: ${subject}
+
+Chapter: ${chapter}
+
+My question is:
+${question}
+
+Please help me understand this in simple Class 9 language.
+Do not give unnecessary advanced information.
+Explain step by step when useful.
+`;
+
+const encoded =
+encodeURIComponent(prompt);
+
+window.open(
+"https://chatgpt.com/?q=" +
+encoded,
+"_blank"
+);
+
+const answer =
+document.getElementById(
+"aiAnswer"
+);
+
+answer.style.display =
+"block";
+
+answer.innerHTML = `
+<strong>🤖 AI Study Helper</strong>
+<br><br>
+Your question has been prepared with your
+subject and chapter.
+<br><br>
+ChatGPT will open in a new tab.
+`;
+
+}
+
+
+/* =========================
+   CHATGPT
+========================= */
+
+function openChatGPT() {
+
+window.open(
+"https://chatgpt.com/",
+"_blank"
+);
+
+}
+
+
+/* =========================
+   SHARE CODE
+========================= */
+
+function generateCode() {
+
+const summary = {
+
+totalMinutes:
+data.logs.reduce(
+(a,b)=>a+b.minutes,
+0
+),
+
+today:
+todayMinutes(),
+
+week:
+weekMinutes(),
+
+streak:
+streak(),
+
+chaptersDone:
+Object.values(data.done)
+.filter(Boolean).length,
+
+subjects:
+[
+...new Set(
+data.logs.map(x=>x.subject)
+)
+],
+
+tasks:
+data.tasks
+
+};
+
+const code =
+btoa(
+JSON.stringify(summary)
+);
+
+document.getElementById(
+"shareCode"
+).value =
+code;
+
+}
+
+
+function copyCode() {
+
+const box =
+document.getElementById(
+"shareCode"
+);
+
+if(!box.value) {
+
+alert(
+"Generate a code first."
+);
+
+return;
+
+}
+
+navigator.clipboard.writeText(
+box.value
+);
+
+alert(
+"Share code copied!"
+);
+
+}
+
+
+function viewFriend() {
+
+const code =
+document.getElementById(
+"friendCode"
+).value.trim();
+
+if(!code) {
+
+alert(
+"Paste a code first."
+);
+
+return;
+
+}
+
+try {
+
+const r =
+JSON.parse(
+atob(code)
+);
+
+document.getElementById(
+"friendResult"
+).innerHTML = `
+
+<br>
+
+<div class="ai-answer">
+
+<h3>👤 Friend's Study Record</h3>
+
+<p>
+Total study:
+<strong>
+${r.totalMinutes} minutes
+</strong>
+</p>
+
+<p>
+Today:
+<strong>
+${r.today} minutes
+</strong>
+</p>
+
+<p>
+This week:
+<strong>
+${r.week} minutes
+</strong>
+</p>
+
+<p>
+🔥 Streak:
+<strong>
+${r.streak} days
+</strong>
+</p>
+
+<p>
+✅ Chapters:
+<strong>
+${r.chaptersDone}
+</strong>
+</p>
+
+<br>
+
+<strong>
+Subjects studied:
+</strong>
+
+<p>
+${r.subjects.join(", ") || "None"}
+</p>
+
+</div>
+
+`;
+
+}
+
+catch {
+
+alert(
+"Invalid share code."
+);
+
+}
+
+}
+
+
+/* =========================
+   THEME
+========================= */
+
+function toggleTheme() {
+
+document.body.classList.toggle(
+"dark"
+);
+
+localStorage.setItem(
+"dark",
+document.body.classList.contains(
+"dark"
+)
+);
+
+}
+
+
+if(
+localStorage.getItem("dark")
+==="true"
+) {
+
+document.body.classList.add(
+"dark"
+);
+
+}
+
+
+/* =========================
+   LANGUAGE
+========================= */
+
+let hindi = false;
+
+function toggleLanguage() {
+
+hindi = !hindi;
+
+if(hindi) {
+
+document.querySelector(
+"header p"
+).textContent =
+"कक्षा 9 CBSE · NCERT";
+
+document.querySelector(
+"header h1"
+).textContent =
+"📚 कक्षा 9 स्टडी ट्रैकर";
+
+}
+else {
+
+document.querySelector(
+"header p"
+).textContent =
+"Class 9 CBSE · NCERT";
+
+document.querySelector(
+"header h1"
+).textContent =
+"📚 Class 9 Study Tracker";
+
+}
+
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearData() {
+
+if(
+!confirm(
+"Delete all study data?"
+)
+)
+return;
+
+localStorage.removeItem(
+"class9Tracker"
+);
+
+location.reload();
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+document.getElementById(
+"dailyGoal"
+).value =
+data.dailyGoal;
+
+document.getElementById(
+"weeklyGoal"
+).value =
+data.weeklyGoal;
+
+updateChapters();
+
+loadChapters();
+
+loadTasks();
+
+updateDashboard();
+
+displayTimer();
+
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Class 9 CBSE · NCERT Study Tracker</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+  transition: .3s;
+}
+
+body.dark {
+  background: #121212;
+  color: #eee;
+}
+
+header {
+  background: #263238;
+  color: white;
+  padding: 25px 15px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+header p {
+  opacity: .85;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 15px;
+  background: #1976d2;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover {
+  opacity: .85;
+}
+
+.secondary {
+  background: #546e7a;
+}
+
+.green {
+  background: #388e3c;
+}
+
+.red {
+  background: #d32f2f;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.08);
+}
+
+body.dark .card {
+  background: #1e1e1e;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+h3 {
+  margin: 15px 0 8px;
+}
+
+select,
+input,
+textarea {
+  width: 100%;
+  padding: 11px;
+  margin: 7px 0 14px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 15px;
+  background: inherit;
+  color: inherit;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 15px;
+}
+
+.stat {
+  background: #eceff1;
+  padding: 18px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+body.dark .stat {
+  background: #292929;
+}
+
+.stat-number {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 8px;
+}
+
+.book-box {
+  border: 2px solid #1976d2;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.book-icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.timer {
+  text-align: center;
+}
+
+#timerDisplay {
+  font-family: monospace;
+  font-size: 55px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+.timer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.chapter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px;
+  border-bottom: 1px solid #ddd;
+}
+
+body.dark .chapter {
+  border-bottom-color: #444;
+}
+
+.chapter input {
+  width: auto;
+  margin: 0;
+}
+
+.chapter-status {
+  margin-left: auto;
+  font-size: 13px;
+  opacity: .7;
+}
+
+.task {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+body.dark .task {
+  border-bottom-color: #444;
+}
+
+.ai-answer {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #eceff1;
+  line-height: 1.6;
+}
+
+body.dark .ai-answer {
+  background: #292929;
+}
+
+.small {
+  font-size: 13px;
+  opacity: .7;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  opacity: .7;
+}
+
+@media(max-width:600px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  header h1 {
+    font-size: 23px;
+  }
+
+  #timerDisplay {
+    font-size: 42px;
+  }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <h1>📚 Class 9 Study Tracker</h1>
+  <p>Class 9 CBSE · NCERT</p>
+</header>
+
+<div class="container">
+
+<!-- NAVIGATION -->
+
+<div class="nav">
+
+  <button onclick="openNCERT()">
+    📖 Open NCERT textbooks
+  </button>
+
+  <button onclick="openChatGPT()">
+    🤖 Open AI Study Helper
+  </button>
+
+  <button class="secondary" onclick="toggleTheme()">
+    🌙 Light / Dark
+  </button>
+
+  <button class="secondary" onclick="toggleLanguage()">
+    🌐 English / हिन्दी
+  </button>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div class="card">
+
+<h2>📊 Dashboard</h2>
+
+<div class="grid">
+
+<div class="stat">
+<div>Today</div>
+<div class="stat-number" id="todayTime">0</div>
+<div>minutes</div>
+</div>
+
+<div class="stat">
+<div>This Week</div>
+<div class="stat-number" id="weekTime">0</div>
+<div>minutes</div>
+</div>
+
+<div class="stat">
+<div>🔥 Streak</div>
+<div class="stat-number" id="streak">0</div>
+<div>days</div>
+</div>
+
+<div class="stat">
+<div>✅ Chapters</div>
+<div class="stat-number" id="doneCount">0</div>
+<div>completed</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- SUBJECT -->
+
+<div class="card">
+
+<h2>📘 Choose Your Study</h2>
+
+<label>Subject</label>
+
+<select id="subject" onchange="updateChapters()">
+
+<option>Mathematics</option>
+<option>Science</option>
+<option>English</option>
+<option>Hindi</option>
+<option>History</option>
+<option>Geography</option>
+<option>Civics</option>
+<option>Economics</option>
+<option>Sanskrit</option>
+<option>Information Technology</option>
+
+</select>
+
+<label>Chapter</label>
+
+<select id="chapter"></select>
+
+</div>
+
+<!-- NCERT BOOK -->
+
+<div class="card">
+
+<h2>📖 NCERT Book</h2>
+
+<div class="book-box">
+
+<div class="book-icon">📚</div>
+
+<h3 id="bookTitle">
+Class 9 NCERT Textbook
+</h3>
+
+<p>
+Use the official NCERT website to open the prescribed textbook.
+</p>
+
+<br>
+
+<button onclick="openNCERT()">
+Open Official NCERT Textbook
+</button>
+
+<p class="small" style="margin-top:15px">
+The tracker does not copy or host NCERT PDFs.
+</p>
+
+</div>
+
+</div>
+
+<!-- AI HELPER -->
+
+<div class="card">
+
+<h2>🤖 AI Study Helper</h2>
+
+<p>
+Ask for help with your selected Class 9 topic.
+</p>
+
+<br>
+
+<label>Your question</label>
+
+<textarea
+id="aiQuestion"
+placeholder="Example: Explain this chapter in simple words..."
+></textarea>
+
+<button onclick="askAI()">
+🤖 Ask AI
+</button>
+
+<div id="aiAnswer" class="ai-answer" style="display:none"></div>
+
+</div>
+
+<!-- TIMER -->
+
+<div class="card timer">
+
+<h2>⏱ Study Timer</h2>
+
+<div id="timerMode">
+Normal Study
+</div>
+
+<div id="timerDisplay">
+00:00:00
+</div>
+
+<div class="timer-buttons">
+
+<button onclick="startTimer()">▶ Start</button>
+
+<button onclick="stopTimer()">⏸ Stop</button>
+
+<button class="secondary" onclick="resetTimer()">↻ Reset</button>
+
+<button class="green" onclick="pomodoro()">
+🍅 Pomodoro 25 min
+</button>
+
+</div>
+
+<p class="small" style="margin-top:15px">
+Pomodoro = 25 minutes study + 5 minutes break
+</p>
+
+</div>
+
+<!-- MANUAL STUDY -->
+
+<div class="card">
+
+<h2>📝 Manual Study Log</h2>
+
+<label>Minutes studied</label>
+
+<input
+type="number"
+id="manualMinutes"
+min="1"
+placeholder="Example: 45"
+
+>
+
+<button onclick="manualLog()">
+Add Study Time
+</button>
+
+</div>
+
+<!-- GOALS -->
+
+<div class="card">
+
+<h2>🎯 Goals</h2>
+
+<label>Daily goal</label>
+
+<input
+type="number"
+id="dailyGoal"
+min="1"
+onchange="saveGoals()"
+
+>
+
+<label>Weekly goal</label>
+
+<input
+type="number"
+id="weeklyGoal"
+min="1"
+onchange="saveGoals()"
+
+>
+
+<p>
+Daily:
+<strong id="dailyProgress">0 min</strong>
+</p>
+
+<br>
+
+<p>
+Weekly:
+<strong id="weeklyProgress">0 min</strong>
+</p>
+
+</div>
+
+<!-- CHAPTER CHECKLIST -->
+
+<div class="card">
+
+<h2>✅ NCERT Chapter Checklist</h2>
+
+<div id="chapters"></div>
+
+</div>
+
+<!-- HOMEWORK -->
+
+<div class="card">
+
+<h2>📅 Homework & Tests</h2>
+
+<label>Subject</label>
+
+<select id="taskSubject">
+
+<option>Mathematics</option>
+<option>Science</option>
+<option>English</option>
+<option>Hindi</option>
+<option>History</option>
+<option>Geography</option>
+<option>Civics</option>
+<option>Economics</option>
+<option>Sanskrit</option>
+<option>Information Technology</option>
+
+</select>
+
+<label>Task</label>
+
+<input
+id="taskText"
+placeholder="Example: Complete Science questions"
+
+>
+
+<label>Date</label>
+
+<input
+type="date"
+id="taskDate"
+
+>
+
+<button onclick="addTask()">
+Add Task
+</button>
+
+<div id="tasks"></div>
+
+</div>
+
+<!-- SHARE -->
+
+<div class="card">
+
+<h2>🔗 Share Study Record</h2>
+
+<p class="small">
+Generate a code and send it to your friend.
+</p>
+
+<br>
+
+<button onclick="generateCode()">
+Generate Share Code
+</button>
+
+<textarea
+id="shareCode"
+readonly
+placeholder="Your code appears here..."
+></textarea>
+
+<button class="secondary" onclick="copyCode()">
+Copy Code
+</button>
+
+<br><br>
+
+<h3>View Friend's Record</h3>
+
+<textarea
+id="friendCode"
+placeholder="Paste friend's code here..."
+></textarea>
+
+<button onclick="viewFriend()">
+View Record
+</button>
+
+<div id="friendResult"></div>
+
+</div>
+
+<!-- DATA -->
+
+<div class="card">
+
+<h2>⚙️ Data</h2>
+
+<p class="small">
+Your study data is saved in this browser.
+No account is required.
+</p>
+
+<br>
+
+<button class="red" onclick="clearData()">
+Clear All Data
+</button>
+
+</div>
+
+</div>
+
+<footer>
+Class 9 CBSE · NCERT Study Tracker
+</footer>
+
+<script>
+
+/* =========================
+   NCERT
+========================= */
+
+function openNCERT() {
+
+  window.open(
+    "https://ncert.nic.in/textbook.php",
+    "_blank"
+  );
+
+}
+
+
+/* =========================
+   CHAPTERS
+========================= */
+
+const chapters = {
+
+Mathematics: [
+"Number Systems",
+"Polynomials",
+"Coordinate Geometry",
+"Linear Equations in Two Variables",
+"Introduction to Euclid's Geometry",
+"Lines and Angles",
+"Triangles",
+"Quadrilaterals",
+"Circles",
+"Heron's Formula",
+"Surface Areas and Volumes",
+"Statistics",
+"Probability"
+],
+
+Science: [
+"Matter in Our Surroundings",
+"Is Matter Around Us Pure?",
+"Atoms and Molecules",
+"Structure of the Atom",
+"The Fundamental Unit of Life",
+"Tissues",
+"Motion",
+"Force and Laws of Motion",
+"Gravitation",
+"Work and Energy",
+"Sound",
+"Improvement in Food Resources"
+],
+
+English: [
+"Beehive / Kaveri — check NCERT",
+"Moments — check NCERT",
+"English chapters — official NCERT list"
+],
+
+Hindi: [
+"Hindi — official NCERT chapter list"
+],
+
+History: [
+"The French Revolution",
+"Socialism in Europe and the Russian Revolution",
+"Nazism and the Rise of Hitler",
+"Forest Society and Colonialism",
+"Pastoralists in the Modern World"
+],
+
+Geography: [
+"India — Size and Location",
+"Physical Features of India",
+"Drainage",
+"Climate",
+"Natural Vegetation and Wildlife",
+"Population"
+],
+
+Civics: [
+"What is Democracy? Why Democracy?",
+"Constitutional Design",
+"Electoral Politics",
+"Working of Institutions",
+"Democratic Rights"
+],
+
+Economics: [
+"The Story of Village Palampur",
+"People as Resource",
+"Poverty as a Challenge",
+"Food Security in India"
+],
+
+Sanskrit: [
+"Sanskrit — official NCERT chapter list"
+],
+
+"Information Technology": [
+"IT — check prescribed textbook"
+]
+
+};
+
+
+/* =========================
+   DATA
+========================= */
+
+let data =
+JSON.parse(
+localStorage.getItem("class9Tracker")
+) || {
+
+logs: [],
+done: {},
+tasks: [],
+dailyGoal: 60,
+weeklyGoal: 420
+
+};
+
+
+function save() {
+
+localStorage.setItem(
+"class9Tracker",
+JSON.stringify(data)
+);
+
+updateDashboard();
+
+}
+
+
+/* =========================
+   SUBJECT
+========================= */
+
+function updateChapters() {
+
+const subject =
+document.getElementById("subject").value;
+
+const select =
+document.getElementById("chapter");
+
+select.innerHTML = "";
+
+chapters[subject].forEach((name,index)=>{
+
+const option =
+document.createElement("option");
+
+option.value = index;
+
+option.textContent = name;
+
+select.appendChild(option);
+
+});
+
+document.getElementById(
+"bookTitle"
+).textContent =
+subject + " — NCERT";
+
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+let seconds = 0;
+
+let interval = null;
+
+
+function displayTimer() {
+
+let h =
+Math.floor(seconds / 3600);
+
+let m =
+Math.floor((seconds % 3600) / 60);
+
+let s =
+seconds % 60;
+
+document.getElementById(
+"timerDisplay"
+).textContent =
+
+String(h).padStart(2,"0") +
+":" +
+String(m).padStart(2,"0") +
+":" +
+String(s).padStart(2,"0");
+
+}
+
+
+function startTimer() {
+
+if(interval) return;
+
+document.getElementById(
+"timerMode"
+).textContent =
+"Normal Study";
+
+interval =
+setInterval(()=>{
+
+seconds++;
+
+displayTimer();
+
+},1000);
+
+}
+
+
+function stopTimer() {
+
+if(!interval) return;
+
+clearInterval(interval);
+
+interval = null;
+
+const minutes =
+Math.floor(seconds / 60);
+
+if(minutes > 0)
+addLog(minutes);
+
+}
+
+
+function resetTimer() {
+
+clearInterval(interval);
+
+interval = null;
+
+seconds = 0;
+
+displayTimer();
+
+}
+
+
+/* =========================
+   POMODORO
+========================= */
+
+function pomodoro() {
+
+resetTimer();
+
+let remaining =
+25 * 60;
+
+document.getElementById(
+"timerMode"
+).textContent =
+"🍅 Pomodoro Study";
+
+document.getElementById(
+"timerDisplay"
+).textContent =
+"25:00";
+
+
+interval =
+setInterval(()=>{
+
+remaining--;
+
+let m =
+Math.floor(remaining / 60);
+
+let s =
+remaining % 60;
+
+document.getElementById(
+"timerDisplay"
+).textContent =
+String(m).padStart(2,"0") +
+":" +
+String(s).padStart(2,"0");
+
+
+if(remaining <= 0) {
+
+clearInterval(interval);
+
+interval = null;
+
+addLog(25);
+
+alert(
+"25 minutes complete! Take a 5 minute break."
+);
+
+startBreak();
+
+}
+
+},1000);
+
+}
+
+
+function startBreak() {
+
+let remaining =
+5 * 60;
+
+document.getElementById(
+"timerMode"
+).textContent =
+"☕ Pomodoro Break";
+
+
+interval =
+setInterval(()=>{
+
+remaining--;
+
+let m =
+Math.floor(remaining / 60);
+
+let s =
+remaining % 60;
+
+document.getElementById(
+"timerDisplay"
+).textContent =
+String(m).padStart(2,"0") +
+":" +
+String(s).padStart(2,"0");
+
+
+if(remaining <= 0) {
+
+clearInterval(interval);
+
+interval = null;
+
+alert(
+"Break finished! Start studying again."
+);
+
+resetTimer();
+
+}
+
+},1000);
+
+}
+
+
+/* =========================
+   STUDY LOG
+========================= */
+
+function addLog(minutes) {
+
+const subject =
+document.getElementById(
+"subject"
+).value;
+
+const chapterIndex =
+document.getElementById(
+"chapter"
+).value;
+
+const chapter =
+chapters[subject][chapterIndex];
+
+
+data.logs.push({
+
+date:
+new Date()
+.toISOString()
+.split("T")[0],
+
+minutes: minutes,
+
+subject: subject,
+
+chapter: chapter
+
+});
+
+save();
+
+}
+
+
+function manualLog() {
+
+const input =
+document.getElementById(
+"manualMinutes"
+);
+
+const minutes =
+Number(input.value);
+
+if(minutes <= 0) {
+
+alert(
+"Enter valid minutes."
+);
+
+return;
+
+}
+
+addLog(minutes);
+
+input.value = "";
+
+alert(
+"Study time saved!"
+);
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function today() {
+
+return new Date()
+.toISOString()
+.split("T")[0];
+
+}
+
+
+function todayMinutes() {
+
+return data.logs
+.filter(x=>x.date === today())
+.reduce(
+(a,b)=>a+b.minutes,
+0
+);
+
+}
+
+
+function weekMinutes() {
+
+const now =
+new Date();
+
+const day =
+now.getDay();
+
+const diff =
+day === 0 ? 6 : day - 1;
+
+const start =
+new Date(now);
+
+start.setDate(
+now.getDate() - diff
+);
+
+const startDate =
+start.toISOString()
+.split("T")[0];
+
+return data.logs
+.filter(x=>x.date >= startDate)
+.reduce(
+(a,b)=>a+b.minutes,
+0
+);
+
+}
+
+
+function streak() {
+
+const dates =
+[
+...new Set(
+data.logs.map(x=>x.date)
+)
+].sort().reverse();
+
+if(!dates.length)
+return 0;
+
+let count = 0;
+
+let current =
+new Date();
+
+for(const d of dates) {
+
+const currentDate =
+current
+.toISOString()
+.split("T")[0];
+
+if(d !== currentDate)
+break;
+
+count++;
+
+current.setDate(
+current.getDate()-1
+);
+
+}
+
+return count;
+
+}
+
+
+function updateDashboard() {
+
+const todayTime =
+todayMinutes();
+
+const weekTime =
+weekMinutes();
+
+document.getElementById(
+"todayTime"
+).textContent =
+todayTime;
+
+document.getElementById(
+"weekTime"
+).textContent =
+weekTime;
+
+document.getElementById(
+"streak"
+).textContent =
+streak();
+
+document.getElementById(
+"doneCount"
+).textContent =
+Object.values(data.done)
+.filter(Boolean).length;
+
+document.getElementById(
+"dailyProgress"
+).textContent =
+todayTime +
+" / " +
+data.dailyGoal +
+" min";
+
+document.getElementById(
+"weeklyProgress"
+).textContent =
+weekTime +
+" / " +
+data.weeklyGoal +
+" min";
+
+}
+
+
+/* =========================
+   GOALS
+========================= */
+
+function saveGoals() {
+
+data.dailyGoal =
+Number(
+document.getElementById(
+"dailyGoal"
+).value
+);
+
+data.weeklyGoal =
+Number(
+document.getElementById(
+"weeklyGoal"
+).value
+);
+
+save();
+
+}
+
+
+/* =========================
+   CHECKLIST
+========================= */
+
+function loadChapters() {
+
+const container =
+document.getElementById(
+"chapters"
+);
+
+container.innerHTML = "";
+
+Object.keys(chapters)
+.forEach(subject=>{
+
+const heading =
+document.createElement("h3");
+
+heading.textContent =
+subject;
+
+container.appendChild(
+heading
+);
+
+chapters[subject]
+.forEach((chapter,index)=>{
+
+const key =
+subject + "_" + index;
+
+const row =
+document.createElement("div");
+
+row.className =
+"chapter";
+
+const checkbox =
+document.createElement("input");
+
+checkbox.type =
+"checkbox";
+
+checkbox.checked =
+data.done[key] || false;
+
+checkbox.onchange = ()=>{
+
+data.done[key] =
+checkbox.checked;
+
+save();
+
+loadChapters();
+
+};
+
+const text =
+document.createElement("span");
+
+text.textContent =
+chapter;
+
+const status =
+document.createElement("span");
+
+status.className =
+"chapter-status";
+
+status.textContent =
+checkbox.checked
+? "Done"
+: "Not done";
+
+row.appendChild(
+checkbox
+);
+
+row.appendChild(
+text
+);
+
+row.appendChild(
+status
+);
+
+container.appendChild(
+row
+);
+
+});
+
+});
+
+}
+
+
+/* =========================
+   HOMEWORK
+========================= */
+
+function addTask() {
+
+const subject =
+document.getElementById(
+"taskSubject"
+).value;
+
+const text =
+document.getElementById(
+"taskText"
+).value;
+
+const date =
+document.getElementById(
+"taskDate"
+).value;
+
+if(!text || !date) {
+
+alert(
+"Enter task and date."
+);
+
+return;
+
+}
+
+data.tasks.push({
+
+id: Date.now(),
+
+subject: subject,
+
+text: text,
+
+date: date,
+
+done: false
+
+});
+
+document.getElementById(
+"taskText"
+).value = "";
+
+save();
+
+loadTasks();
+
+}
+
+
+function loadTasks() {
+
+const container =
+document.getElementById(
+"tasks"
+);
+
+container.innerHTML = "";
+
+data.tasks
+.sort(
+(a,b)=>a.date.localeCompare(b.date)
+)
+.forEach(task=>{
+
+const div =
+document.createElement("div");
+
+div.className =
+"task";
+
+div.innerHTML = `
+
+<strong>
+${task.subject}
+</strong>
+
+<p>
+${task.text}
+</p>
+
+<p class="small">
+📅 ${task.date}
+</p>
+
+<br>
+
+<button
+onclick="toggleTask(${task.id})"
+>
+${task.done ? "↩ Undo" : "✓ Done"}
+</button>
+
+<button
+class="red"
+onclick="deleteTask(${task.id})"
+>
+Delete
+</button>
+
+`;
+
+container.appendChild(div);
+
+});
+
+}
+
+
+function toggleTask(id) {
+
+const task =
+data.tasks.find(
+x=>x.id === id
+);
+
+if(task) {
+
+task.done =
+!task.done;
+
+save();
+
+loadTasks();
+
+}
+
+}
+
+
+function deleteTask(id) {
+
+data.tasks =
+data.tasks.filter(
+x=>x.id !== id
+);
+
+save();
+
+loadTasks();
+
+}
+
+
+/* =========================
+   AI HELPER
+========================= */
+
+function askAI() {
+
+const question =
+document.getElementById(
+"aiQuestion"
+).value.trim();
+
+if(!question) {
+
+alert(
+"Write a question first."
+);
+
+return;
+
+}
+
+const subject =
+document.getElementById(
+"subject"
+).value;
+
+const index =
+document.getElementById(
+"chapter"
+).value;
+
+const chapter =
+chapters[subject][index];
+
+
+const prompt =
+`I am a Class 9 CBSE student studying NCERT.
+
+Subject: ${subject}
+
+Chapter: ${chapter}
+
+My question is:
+${question}
+
+Please help me understand this in simple Class 9 language.
+Do not give unnecessary advanced information.
+Explain step by step when useful.
+`;
+
+const encoded =
+encodeURIComponent(prompt);
+
+window.open(
+"https://chatgpt.com/?q=" +
+encoded,
+"_blank"
+);
+
+const answer =
+document.getElementById(
+"aiAnswer"
+);
+
+answer.style.display =
+"block";
+
+answer.innerHTML = `
+<strong>🤖 AI Study Helper</strong>
+<br><br>
+Your question has been prepared with your
+subject and chapter.
+<br><br>
+ChatGPT will open in a new tab.
+`;
+
+}
+
+
+/* =========================
+   CHATGPT
+========================= */
+
+function openChatGPT() {
+
+window.open(
+"https://chatgpt.com/",
+"_blank"
+);
+
+}
+
+
+/* =========================
+   SHARE CODE
+========================= */
+
+function generateCode() {
+
+const summary = {
+
+totalMinutes:
+data.logs.reduce(
+(a,b)=>a+b.minutes,
+0
+),
+
+today:
+todayMinutes(),
+
+week:
+weekMinutes(),
+
+streak:
+streak(),
+
+chaptersDone:
+Object.values(data.done)
+.filter(Boolean).length,
+
+subjects:
+[
+...new Set(
+data.logs.map(x=>x.subject)
+)
+],
+
+tasks:
+data.tasks
+
+};
+
+const code =
+btoa(
+JSON.stringify(summary)
+);
+
+document.getElementById(
+"shareCode"
+).value =
+code;
+
+}
+
+
+function copyCode() {
+
+const box =
+document.getElementById(
+"shareCode"
+);
+
+if(!box.value) {
+
+alert(
+"Generate a code first."
+);
+
+return;
+
+}
+
+navigator.clipboard.writeText(
+box.value
+);
+
+alert(
+"Share code copied!"
+);
+
+}
+
+
+function viewFriend() {
+
+const code =
+document.getElementById(
+"friendCode"
+).value.trim();
+
+if(!code) {
+
+alert(
+"Paste a code first."
+);
+
+return;
+
+}
+
+try {
+
+const r =
+JSON.parse(
+atob(code)
+);
+
+document.getElementById(
+"friendResult"
+).innerHTML = `
+
+<br>
+
+<div class="ai-answer">
+
+<h3>👤 Friend's Study Record</h3>
+
+<p>
+Total study:
+<strong>
+${r.totalMinutes} minutes
+</strong>
+</p>
+
+<p>
+Today:
+<strong>
+${r.today} minutes
+</strong>
+</p>
+
+<p>
+This week:
+<strong>
+${r.week} minutes
+</strong>
+</p>
+
+<p>
+🔥 Streak:
+<strong>
+${r.streak} days
+</strong>
+</p>
+
+<p>
+✅ Chapters:
+<strong>
+${r.chaptersDone}
+</strong>
+</p>
+
+<br>
+
+<strong>
+Subjects studied:
+</strong>
+
+<p>
+${r.subjects.join(", ") || "None"}
+</p>
+
+</div>
+
+`;
+
+}
+
+catch {
+
+alert(
+"Invalid share code."
+);
+
+}
+
+}
+
+
+/* =========================
+   THEME
+========================= */
+
+function toggleTheme() {
+
+document.body.classList.toggle(
+"dark"
+);
+
+localStorage.setItem(
+"dark",
+document.body.classList.contains(
+"dark"
+)
+);
+
+}
+
+
+if(
+localStorage.getItem("dark")
+==="true"
+) {
+
+document.body.classList.add(
+"dark"
+);
+
+}
+
+
+/* =========================
+   LANGUAGE
+========================= */
+
+let hindi = false;
+
+function toggleLanguage() {
+
+hindi = !hindi;
+
+if(hindi) {
+
+document.querySelector(
+"header p"
+).textContent =
+"कक्षा 9 CBSE · NCERT";
+
+document.querySelector(
+"header h1"
+).textContent =
+"📚 कक्षा 9 स्टडी ट्रैकर";
+
+}
+else {
+
+document.querySelector(
+"header p"
+).textContent =
+"Class 9 CBSE · NCERT";
+
+document.querySelector(
+"header h1"
+).textContent =
+"📚 Class 9 Study Tracker";
+
+}
+
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearData() {
+
+if(
+!confirm(
+"Delete all study data?"
+)
+)
+return;
+
+localStorage.removeItem(
+"class9Tracker"
+);
+
+location.reload();
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+document.getElementById(
+"dailyGoal"
+).value =
+data.dailyGoal;
+
+document.getElementById(
+"weeklyGoal"
+).value =
+data.weeklyGoal;
+
+updateChapters();
+
+loadChapters();
+
+loadTasks();
+
+updateDashboard();
+
+displayTimer();
+
+</script>
+
+</body>
+</html>
